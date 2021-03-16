@@ -1,57 +1,19 @@
-# Project Name
+# Build serverless, full stack applications in Azure
 
-(short, 1-3 sentenced, description of the project)
+Learn how to create, build, and deploy modern full stack applications in Azure leveraging the language of your choice (Python, Node.js, or .NET) and with a Vue.js frontend. Topics covered include modern database capabilities, CI/CD and DevOps, backend API development, REST, and more. Using a real-world scenario of trying to catch the bus, you will learn how to build a solution that leverages Azure SQL Database, Azure Functions, Azure Static Web Apps, Logic Apps, Visual Studio Code and GitHub Actions.
 
 ## Features
 
-This project framework provides the following features:
+This project features the following capabilities.
 
-* Feature 1
-* Feature 2
-* ...
+- azure-sql-database
+- github-actions
+- vs-code
+- azure-functions
+- azure-logic-apps
+- azure-app-service-static
+- azure-web-apps
 
 ## Getting Started
 
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+***Coming Soon*** Stay tuned for a complete learning path including free sandbox on how to configure this project.
