@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true;",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "RealTimeFeedUrl": "https://s3.amazonaws.com/kcm-alerts-realtime-prod/vehiclepositions_enhanced.json",
+        "LogicAppUrl": "",
+        "AzureSQLConnectionString": "Server=.database.windows.net,1433;Database=bus_db;UID=af-user;PWD=;Connection Timeout=30;"
+    }
+}

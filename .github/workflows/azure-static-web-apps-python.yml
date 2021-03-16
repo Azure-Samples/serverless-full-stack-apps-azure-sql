@@ -1,0 +1,63 @@
+name: Azure Static Web Apps CI/CD for Python functions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'azure-static-web-app/api/python'   # set this to the path to your web app project, defaults to the repository root
+  PYTHON_VERSION: '3.8.x'                 # set this to the python version to use (supports 3.6, 3.7, 3.8)
+
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-18.04
+    name: Build and Deploy Job
+    steps:
+    - name: Checkout GitHub Action
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: ${{ env.PYTHON_VERSION }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --target=".python_packages/lib/site-packages" -r requirements.txt
+        echo "" > requirements.txt # blank out requirements.txt so it doesn't get installed again
+      working-directory: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
+    - name: Build And Deploy
+      id: builddeploy
+      uses: Azure/static-web-apps-deploy@v0.0.1-preview
+      with:
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PYTHON }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+        action: "upload"
+        ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######
+        # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+        app_location: "/azure-static-web-app/client" # App source code path
+        api_location: "/azure-static-web-app/api/python" # Api source code path - optional
+        output_location: "dist" # Built app content directory - optional
+        ###### End of Repository/Build Configurations ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v0.0.1-preview
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PYTHON }}
+          action: "close"

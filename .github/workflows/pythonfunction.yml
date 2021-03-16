@@ -1,0 +1,47 @@
+name: Deploy Python project to Azure Function App
+
+on:
+  [push]
+
+# CONFIGURATION
+# For help, go to https://github.com/Azure/Actions
+#
+# 1. Set up the following secrets in your repository:
+#   AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+#
+# 2. Change these variables for your configuration:
+env:
+  AZURE_FUNCTIONAPP_NAME: catch-the-bus-python # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'azure-function/python'   # set this to the path to your web app project, defaults to the repository root
+  PYTHON_VERSION: '3.9'                 # set this to the python version to use (supports 3.6, 3.7, 3.8)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: Checkout GitHub Action
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: ${{ env.PYTHON_VERSION }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --target=".python_packages/lib/site-packages" -r requirements.txt
+        echo "" > requirements.txt # blank out requirements.txt so it doesn't get installed again
+      working-directory: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PYTHON }}
+
+# For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples

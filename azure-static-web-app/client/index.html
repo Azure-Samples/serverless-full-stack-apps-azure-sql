@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Code inspired from https://github.com/clydedacruz/openstreetmap-wkt-playground
+-->
+
+<head>
+    <title>Catch The Bus - Azure SQL Sample</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Add references to the OpenLayers JavaScript and CSS files. -->
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script
+        src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+
+    <!-- Add reference to the Azure Maps OpenLayers plugin. -->
+    <!-- <script src="azure-maps-openlayers.js"></script>  -->
+
+    <script type='text/javascript'>
+        var raster;
+        var source;
+        var vector;
+        var map;
+        var typeSelect;
+        var draw;
+        var features = new ol.Collection();
+        var format = new ol.format.WKT();
+        var current_shape = "point";
+
+        var fill = new ol.style.Fill({
+            color: 'rgba(167, 122, 210, 0.2)'
+        });
+
+        var stroke = new ol.style.Stroke({
+            color: '#0404B4',
+            width: 2
+        });
+
+        var styles = [
+            new ol.style.Style({
+                image: new ol.style.Circle({
+                    fill: fill,
+                    stroke: stroke,
+                    radius: 5
+                }),
+                fill: fill,
+                stroke: stroke
+            })
+        ];
+
+
+        function init() {
+            //Add authentication details for connecting to Azure Maps.
+            var authOptions = {
+                //Alternatively, use an Azure Maps key. Get an Azure Maps key at https://azure.com/maps. NOTE: The primary key should be used as the key.
+                authType: 'subscriptionKey',
+                subscriptionKey: '3gyuiIJGiyWgP_teei1nFPtVymIE5xqniqjre-nRl7o'
+            };
+
+            raster = new ol.layer.Tile({
+                source: new ol.source.OSM()
+
+                //       source:  new ol.source.AzureMaps({
+                //                 authOptions: authOptions,
+                //                 tilesetId: 'microsoft.imagery'
+                //             })
+            });
+
+            map = new ol.Map({
+                layers: [raster],
+                target: 'map',
+                view: new ol.View({
+                    center: [0, 0],
+                    zoom: 2
+                })
+            });
+
+            const params = new URLSearchParams(location.search);
+            const rid = params.get('rid');
+            const gid = params.get('gid');
+            const apiUrl = `/api/get-bus-data?rid=${rid}&gid=${gid}`;
+            $.getJSON(apiUrl, function (data) {
+                //console.log(data);
+                plotWKT(data);                
+            });
+        }
+
+        function plotWKT(data) {
+            var f1, f2;
+
+            if (data.busData == [] || data.geoFence == [])
+                return;
+            try {
+                f1 = format.readFeature(data.geoFence);
+                f2 = format.readFeature(data.busData);
+            } catch (err) { }
+
+            features.clear();
+
+            // geoFence
+            if (f1)
+            {
+                f1.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+                features.push(f1);
+            }
+            // busData
+            if (f2)
+            {
+                f2.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+                features.push(f2);
+            }
+
+            vector = new ol.layer.Vector({
+                source: new ol.source.Vector({ features: features }),
+                style: styles
+            });
+            map.addLayer(vector);
+            
+            derived_feature = f2 ?? f1;
+            extent = derived_feature.getGeometry().getExtent();
+            minx = derived_feature.getGeometry().getExtent()[0];
+            miny = derived_feature.getGeometry().getExtent()[1];
+            maxx = derived_feature.getGeometry().getExtent()[2];
+            maxy = derived_feature.getGeometry().getExtent()[3];
+            centerx = (minx + maxx) / 2;
+            centery = (miny + maxy) / 2;
+            map.setView(new ol.View({
+                center: [centerx, centery],
+                zoom: 10
+            }));            
+            map.getView().fit(extent, map.getSize());            
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <div class="container-fluid" style="padding:0px;border:0px;height:100%">
+        <div class="span12">
+            <div id="map" class="map" style="z-index: 0"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+14.0
+9
+1       SQLCHAR             0       12      ","     1     Id                                   ""
+2       SQLCHAR             0       12      ","     2     AgencyId                             ""
+3       SQLCHAR             0       100     ","     3     ShortName                            SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       1000    ","     4     LongName                             SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       1000    ","     5     Description                          SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       12      ","     6     Type                                 ""
+7       SQLCHAR             0       1000    ","     7     route_url                            SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0       1000    ","     8     route_color                          SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0       1000    "\n"   9     route_text_color                     SQL_Latin1_General_CP1_CI_AS

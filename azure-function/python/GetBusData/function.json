@@ -1,0 +1,11 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "GetBusData",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "*/15 * * * * *"
+    }
+  ]
+}
