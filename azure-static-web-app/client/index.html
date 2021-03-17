@@ -88,7 +88,7 @@
             const params = new URLSearchParams(location.search);
             const rid = params.get('rid');
             const gid = params.get('gid');
-            const apiUrl = `/api/get-bus-data?rid=${rid}&gid=${gid}`;
+            const apiUrl = `/api/bus-data?rid=${rid}&gid=${gid}`;
             $.getJSON(apiUrl, function (data) {
                 //console.log(data);
                 plotWKT(data);                
