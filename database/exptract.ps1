@@ -1,7 +1,7 @@
 param (
     [Parameter(Mandatory=$true)]$server,
     [Parameter(Mandatory=$true)]$username    
- )
+)
 
 $password = Read-Host "Azure SQL Password" -asSecureString
 

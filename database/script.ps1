@@ -12,4 +12,4 @@ $PwdPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($password)
 $PlainTextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto($PwdPointer)
 [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($PwdPointer)
 
-Invoke-Expression "$sqlPackage /a:publish /tcs:""Data Source=$server.database.windows.net;Initial Catalog=bus_db;UID=$username;PWD=$PlainTextPassword"" /sf:$dacpac"
+Invoke-Expression "$sqlPackage /a:script /op:script.sync.sql /sf:$dacpac /tcs:""Data Source=$server.database.windows.net;Initial Catalog=bus_db;UID=$username;PWD=$PlainTextPassword"""
