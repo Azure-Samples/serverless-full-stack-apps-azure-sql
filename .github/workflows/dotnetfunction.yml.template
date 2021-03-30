@@ -35,5 +35,5 @@ jobs:
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_DOTNET }}
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
       
