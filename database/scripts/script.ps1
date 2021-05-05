@@ -6,7 +6,7 @@ param (
 $password = Read-Host "Azure SQL Password" -asSecureString
 
 $sqlPackage="C:\SqlPackage\sqlpackage.exe"
-$dacpac="bus-db.dacpac"
+$dacpac="../dacpac/bus-db.dacpac"
 
 $PwdPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($password)
 $PlainTextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto($PwdPointer)
