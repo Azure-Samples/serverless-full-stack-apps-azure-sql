@@ -19,12 +19,8 @@
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
 
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script
-        src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
     <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
-
-    <!-- Add reference to the Azure Maps OpenLayers plugin. -->
-    <!-- <script src="azure-maps-openlayers.js"></script>  -->
 
     <script type='text/javascript'>
         var raster;
@@ -58,22 +54,9 @@
             })
         ];
 
-
-        function init() {
-            //Add authentication details for connecting to Azure Maps.
-            var authOptions = {
-                //Alternatively, use an Azure Maps key. Get an Azure Maps key at https://azure.com/maps. NOTE: The primary key should be used as the key.
-                authType: 'subscriptionKey',
-                subscriptionKey: 'keyHere'
-            };
-
+        function init() {           
             raster = new ol.layer.Tile({
                 source: new ol.source.OSM()
-
-                //       source:  new ol.source.AzureMaps({
-                //                 authOptions: authOptions,
-                //                 tilesetId: 'microsoft.imagery'
-                //             })
             });
 
             map = new ol.Map({
@@ -89,7 +72,7 @@
             const rid = params.get('rid');
             const gid = params.get('gid');
             const apiUrl = `/api/bus-data?rid=${rid}&gid=${gid}`;
-            $.getJSON(apiUrl, function (data) {
+            $.getJSON(apiUrl, data => {
                 //console.log(data);
                 plotWKT(data);                
             });
