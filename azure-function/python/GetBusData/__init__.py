@@ -98,6 +98,6 @@ def executeQueryJSON(procedure, payload=None):
                 result = {}        
         
     finally:
-        cursor.close()
+        pass
 
     return result
