@@ -1,0 +1,16 @@
+PS /home/tucow> Write-Host "Please note your unique ID for future exercises in this module:"
+Please note your unique ID for future exercises in this module:
+PS /home/tucow> Write-Host $uniqueID
+510527
+PS /home/tucow> Write-Host "Your resource group name is:"
+Your resource group name is:
+PS /home/tucow> Write-Host $resourceGroupName
+learn-79cf5f61-f2e1-442b-bba0-e49c6972337a
+PS /home/tucow> Write-Host "Your resources were deployed in thefollowing region:"
+Your resources were deployed in the following region:
+PS /home/tucow> Write-Host $location
+westus
+PS /home/tucow> Write-Host "Your server name is:"
+Your server name is:
+PS /home/tucow> Write-Host $serverName
+bus-server510527
