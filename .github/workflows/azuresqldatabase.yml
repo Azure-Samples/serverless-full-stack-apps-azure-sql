@@ -1,5 +1,5 @@
 name: Deploy Azure SQL Database schema
-
+ 
 on:
   push:
     branches:
