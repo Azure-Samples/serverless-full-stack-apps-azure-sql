@@ -7,3 +7,5 @@ SELECT TOP (1000) [Id]
       ,[Name]
       ,[GeoFence]
   FROM [dbo].[GeoFences]
+
+https://prod-165.westus.logic.azure.com:443/workflows/dcb8a1f7c2a04d31bda3ec5f97109002/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=N6Juk9oWwlaDpoI6kFUOp8u0pQ7GWKYdBo2hZDC1eWc  
