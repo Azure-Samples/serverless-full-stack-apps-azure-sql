@@ -16,4 +16,4 @@ This project features the following capabilities.
 
 ## Getting Started
 
-https://docs.microsoft.com/en-us/learn/modules/deploy-backend-apis/
+https://docs.microsoft.com/en-us/learn/paths/build-serverless-full-stack-apps-azure/
