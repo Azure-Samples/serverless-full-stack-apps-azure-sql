@@ -17,3 +17,4 @@ This project features the following capabilities.
 ## Getting Started
 
 https://aka.ms/azuremodernapps
+https://youtu.be/XBxBC959tLg
