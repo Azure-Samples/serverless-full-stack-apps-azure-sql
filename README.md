@@ -16,4 +16,4 @@ This project features the following capabilities.
 
 ## Getting Started
 
-***Coming Soon*** Stay tuned for a complete learning path including free sandbox on how to configure this project.
+https://docs.microsoft.com/en-us/learn/paths/build-serverless-full-stack-apps-azure/
