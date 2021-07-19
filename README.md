@@ -14,6 +14,10 @@ This project features the following capabilities.
 - azure-app-service-static
 - azure-web-apps
 
+## Architecture
+
+![Solution Architecture](./documents/catch-the-bus-architecture.svg)
+
 ## Getting Started
 
 https://aka.ms/azuremodernapps  
