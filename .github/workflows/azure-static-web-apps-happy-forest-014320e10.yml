@@ -30,7 +30,7 @@ jobs:
           app_location: "azure-static-web-app/client" # App source code path
           api_location: "azure-static-web-app/api/dotnet" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          ###### End of Repository/Build Configurations. ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
