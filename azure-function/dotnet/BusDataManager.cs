@@ -48,7 +48,7 @@ namespace GetBusData
             
             // Get the routes we want to monitor
             var monitoredRoutes = await GetMonitoredRoutes();
-            
+
             // Filter only the routes we want to monitor
             var buses = feed.Entities.FindAll(e => monitoredRoutes.Contains(e.Vehicle.Trip.RouteId));
 
@@ -62,8 +62,7 @@ namespace GetBusData
             {
                 _log.LogInformation($"Vehicle {gf.VehicleId}, route {gf.RouteName}, {gf.GeoFenceStatus} GeoFence {gf.GeoFenceName} at {gf.TimestampUTC} UTC");                    
                 await TriggerLogicApp(gf);
-            }
-
+            }            
         }
 
         private async Task<GTFS.RealTime.Feed> GetRealTimeFeed()

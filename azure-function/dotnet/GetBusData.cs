@@ -14,7 +14,7 @@ namespace GetBusData
     {
         [FunctionName("GetBusData")]
         public async static Task Run([TimerTrigger("*/15 * * * * *")]TimerInfo myTimer, ILogger log)
-        {
+        {            
             var m = new BusDataManager(log);
             await m.ProcessBusData();
         }
