@@ -265,6 +265,7 @@ __pycache__/
 
 # Custom
 *.zip
+.notes
 transit/
 SampleData/
 __azurite_db_blob__.json
