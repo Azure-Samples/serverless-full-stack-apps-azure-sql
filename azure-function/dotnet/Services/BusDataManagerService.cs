@@ -2,12 +2,12 @@
 
 public sealed class BusDataManagerService : IBusDataManagerService
 {
-    private readonly ILogger _log;
+    private readonly ILogger<BusDataManagerService> _log;
     private readonly HttpClient _client;
     private readonly BusDataOptions _options;
 
     public BusDataManagerService(
-        ILogger log,
+        ILogger<BusDataManagerService> log,
         HttpClient client,
         IOptions<BusDataOptions> options) =>
         (_log, _client, _options) =
