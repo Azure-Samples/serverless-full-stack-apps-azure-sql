@@ -10,6 +10,6 @@ public class GetBusDataFunction
 
     [FunctionName(nameof(GetBusData))]
     public async Task GetBusData(
-        [TimerTrigger("*/15 * * * * *")] TimerInfo _) =>
+        [TimerTrigger("*/15 * * * * *")] TimerInfo timerInfo) =>
         await _busDataManagerService.ProcessBusDataAsync();
 }
