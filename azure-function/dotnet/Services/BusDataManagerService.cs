@@ -52,8 +52,9 @@ public sealed class BusDataManagerService : IBusDataManagerService
     {
         var response = await _client.GetAsync(_options.RealTimeFeedUrl);
         response.EnsureSuccessStatusCode();
-        var responseString = await response.Content.ReadAsStringAsync();
-        var feed = JsonConvert.DeserializeObject<Feed>(responseString);
+        var responseJson = await response.Content.ReadAsStringAsync();
+        var feed = JsonConvert.DeserializeObject<Feed>(
+            responseJson, DefaultJsonSerializerSettings.Defaults);
 
         return feed;
     }
@@ -94,8 +95,10 @@ public sealed class BusDataManagerService : IBusDataManagerService
 
         using var conn = new SqlConnection(_options.AzureSQLConnectionString);
 
-        var queryResult = await conn.QuerySingleOrDefaultAsync<string>("web.AddBusData", new { payload = busData.ToString() }, commandType: CommandType.StoredProcedure);
-        var result = JsonConvert.DeserializeObject<List<ActivatedGeoFence>>(queryResult ?? "[]");
+        var queryResult = await conn.QuerySingleOrDefaultAsync<string>(
+            "web.AddBusData", new { payload = busData.ToString() }, commandType: CommandType.StoredProcedure);
+        var result = JsonConvert.DeserializeObject<List<ActivatedGeoFence>>(
+            queryResult ?? "[]" /* Use the default JSON serializer settings from Newtonsoft.Json */);
         _log.LogInformation("Found {Count} buses activating a geofence", result.Count);
 
         return result;
@@ -109,8 +112,9 @@ public sealed class BusDataManagerService : IBusDataManagerService
         _log.LogInformation("Calling Logic App webhook for {VehicleId}", geoFence.VehicleId);
 
         using var stringContent = new StringContent(
-            JsonConvert.SerializeObject(content, Formatting.None), 
-            Encoding.UTF8, 
+            JsonConvert.SerializeObject(
+                content /* Use the default JSON serializer settings from Newtonsoft.Json */),
+            Encoding.UTF8,
             "application/json");
 
         var logicAppResult = await _client.PostAsync(_options.LogicAppUrl, stringContent);

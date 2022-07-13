@@ -2,7 +2,6 @@
 
 public sealed class Feed
 {
-    [JsonProperty("header")]
     public Header? Header { get; set; }
 
     [JsonProperty("entity")]
