@@ -4,9 +4,9 @@ on:
   [push]
 
 env:
-  AZURE_FUNCTIONAPP_NAME: catch-the-bus-node   # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'azure-function/node'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '14.x'                     # set this to the node version to use (supports 8.x, 10.x, 12.x, 14.x)
+  AZURE_FUNCTIONAPP_NAME: catch-the-bus-node    # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'azure-function/node'   # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '16.x'    # set this to the node version to use (supports 8.x, 10.x, 12.x, 14.x, 16.x)
 
 jobs:
   build-and-deploy:
