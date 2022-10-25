@@ -1,4 +1,4 @@
-name: 'Deploy Azure SQL Database schema versione del 23-10-2022-12:23'
+name: 'Deploy Azure SQL Database schema versione del 25-10-2022-17:00'
 
 on:
   push:
