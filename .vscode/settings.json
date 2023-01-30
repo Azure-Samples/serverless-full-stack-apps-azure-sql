@@ -4,5 +4,8 @@
         "baseUri": "/api",
         "proxyUri": "http://localhost:7071/api"
     },
-    "azureFunctions.projectSubpath": "azure-function/dotnet"
+    "azureFunctions.projectSubpath": "azure-function/dotnet",
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
 }
