@@ -14,22 +14,22 @@ $serverName = "bus-server$($uniqueID)"
 $databaseName = "bus-db"
 # Create a new server with a system wide unique server name
 $server = New-AzSqlServer -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -Location $location `
+    -ServerName $serverName 
+    -Location $location 
     -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
 # Create a server firewall rule that allows access from the specified IP range and all Azure services
-$serverFirewallRule = New-AzSqlServerFirewallRule `
-    -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -FirewallRuleName "AllowedIPs" `
+$serverFirewallRule = New-AzSqlServerFirewallRule 
+    -ResourceGroupName $resourceGroupName 
+    -ServerName $serverName 
+    -FirewallRuleName "AllowedIPs" 
     -StartIpAddress $ipAddress -EndIpAddress $ipAddress 
-$allowAzureIpsRule = New-AzSqlServerFirewallRule `
-    -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
+$allowAzureIpsRule = New-AzSqlServerFirewallRule 
+    -ResourceGroupName $resourceGroupName 
+    -ServerName $serverName 
     -AllowAllAzureIPs
 # Create a database
-$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -DatabaseName $databaseName `
-    -Edition "GeneralPurpose" -Vcore 4 -ComputeGeneration "Gen5" `
+$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName 
+    -ServerName $serverName 
+    -DatabaseName $databaseName 
+    -Edition "GeneralPurpose" -Vcore 4 -ComputeGeneration "Gen5" 
     -ComputeModel Serverless -MinimumCapacity 0.5
