@@ -18,12 +18,15 @@ This project features the following capabilities.
 
 ![Solution Architecture](./documents/catch-the-bus-architecture.svg)
 
-## Getting Started
+## Related content
 
-### Microsoft Learn Path
-
-Learn  at your own pace, following the interactive tutorial, that will guide you through the building of the entire solution: https://aka.ms/azuremodernapps 
-
-### YouTube Video
-
-The authors discuss the architecture, the key points and the details of each technology used and each choice made: https://youtu.be/XBxBC959tLg
+- [Architect modern applications using Azure SQL Database](https://learn.microsoft.com/training/modules/create-foundation-modern-apps/)
+- [Modern development: creating a REST API, via CI/CD and back](https://devblogs.microsoft.com/azure-sql/modern-development-creating-a-rest-api-via-ci-cd-and-back/)
+- [Video: Using Azure Pipelines for Azure SQL deployments](https://www.youtube.com/watch?v=G7H6HbzwAfs&list=PLlrxD0HtieHieV7Jls72yFPSKyGqycbZR&index=26)
+- [10 reasons to use Azure SQL in your next project](https://devblogs.microsoft.com/azure-sql/10-reasons-to-use-azure-sql-in-your-next-project/).
+- [Azure SQL JSON support sample](https://github.com/yorek/azure-sql-db-samples/tree/master/samples/03-json)
+- [Geospatial support](/sql/relational-databases/spatial/spatial-data-sql-server)
+- [OpenLayers library](https://openlayers.org/)
+- [Graph models](/sql/relational-databases/graphs/sql-graph-overview)
+- [Columnstore indexes](/sql/relational-databases/indexes/columnstore-indexes-overview)
+- [Introduction to Memory-Optimized Tables](/sql/relational-databases/in-memory-oltp/introduction-to-memory-optimized-tables)
